@@ -6,7 +6,6 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.swing.JOptionPane;
 
-
 import javax.activation.*;
 
 public class SendEmail {

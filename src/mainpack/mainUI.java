@@ -125,7 +125,8 @@ public class mainUI {
 		UIManager.put("OptionPane.messageForeground", darkMode ? Color.WHITE : Color.BLACK);
 		UIManager.put("OptionPane.background", darkMode ? Color.decode("#14171A") : new Color(210, 210, 210));
 		UIManager.put("Panel.background", darkMode ? Color.decode("#14171A") : new Color(210, 210, 210));
-		UIManager.put("MatteBorder.border", new MatteBorder(2, 2, 2, 2, darkMode ? Color.decode("#1DA1F2") : new Color(180,180,180)));
+		UIManager.put("MatteBorder.border",
+				new MatteBorder(2, 2, 2, 2, darkMode ? Color.decode("#1DA1F2") : new Color(180, 180, 180)));
 		UIManager.put("OptionPane.setUndecorated", true);
 		// Menubar for changing email
 
@@ -504,7 +505,7 @@ public class mainUI {
 						filepath.remove(0);
 					}
 					studentCounts = 0;
-					studCounts.setText("Students Count: "+ studentCounts);
+					studCounts.setText("Students Count: " + studentCounts);
 					JOptionPane.showMessageDialog(null, "Successfully deleted all data");
 				} catch (Exception esdd) {
 					JOptionPane.showMessageDialog(null, "Error: " + esdd);
@@ -585,10 +586,10 @@ public class mainUI {
 			public void mouseClicked(MouseEvent e) {
 				String searchID = JOptionPane.showInputDialog(null, "Search for Student ID");
 				if (studentID.size() >= 1) {
+					if (searchID == null || (searchID != null && ("".equals(searchID)))) {
+						return;
+					}
 					for (int iss = 0; iss < fName.size(); iss++) {
-						if(searchID == null || (searchID != null && ("".equals(searchID)))){
-							return;
-						}
 						if (searchID.equalsIgnoreCase(studentID.get(iss))) {
 							JOptionPane.showMessageDialog(null,
 									"Full Name: " + fName.get(iss) + "\n" + "Course: " + course.get(iss) + "\n"
@@ -597,13 +598,12 @@ public class mainUI {
 											+ permitAvailability.get(iss) + "\n" + "Email: " + email.get(iss) + "\n"
 											+ "Phone #: " + phoneNum.get(iss),
 									"Student Info", JOptionPane.PLAIN_MESSAGE, iconRescaler(filepath.get(iss)));
-						} else {
-							JOptionPane.showMessageDialog(null, "Cant find any " + searchID + " in List");
+							return;
 						}
-						
 					}
+					JOptionPane.showMessageDialog(null, "Cant find any " + searchID + " in List");
 				} else {
-					if(searchID == null || (searchID != null && ("".equals(searchID)))){
+					if (searchID == null || (searchID != null && ("".equals(searchID)))) {
 						return;
 					}
 					searchID = "";
